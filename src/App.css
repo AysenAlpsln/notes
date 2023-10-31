@@ -90,14 +90,16 @@ html, body {
   bottom: 65px;
 }
 
-.textarea_container .select_colors {
+.textarea_container .select_colors,
+.edit_popup_form .select_colors {
   display: flex;
   justify-content: space-between;
   width: 180px;
   margin-left: 20px;
 }
 
-.textarea_container .select_colors .color {
+.textarea_container .select_colors .color, 
+.edit_popup_form .select_colors .color {
   display: none;
 }
 
@@ -144,6 +146,26 @@ html, body {
 }
 
 #color_green + label.color_label span {
+  background-color: #AED580;
+}
+
+#edit_color_pink + label.color_label span {
+  background-color: #F06291;
+}
+
+#edit_color_purple + label.color_label span {
+  background-color: #BA68C8;
+}
+
+#edit_color_yellow + label.color_label span {
+  background-color: #FED54E;
+}
+
+#edit_color_blue + label.color_label span {
+  background-color: #50C2F7;
+}
+
+#edit_color_green + label.color_label span {
   background-color: #AED580;
 }
 
@@ -218,4 +240,63 @@ html, body {
 
 .list_container .note .note_buttons button svg:hover {
   color: #818181;
+}
+
+.edit_popup_form {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.edit_popup_form textarea {
+  width: 100%;
+  min-width: 100%;
+  border-radius: 5px;
+  min-height: 60px;
+  color: #3a3a3a;
+  font-size: 20px;
+  border: 2px solid #b9b8b8;
+  font-family: math;
+  box-shadow: 0px 8px 10px 0px #92919150;
+  margin-bottom: 30px;
+}
+
+.edit_popup_form .color_select_area {
+  margin-bottom: 20px;
+}
+
+.edit_popup_form .color_select_area .select_colors {
+  margin-left: 0;
+}
+
+.edit_popup_form .edit_note_button .edit,
+.edit_popup_form .edit_note_button .cancel {
+  cursor: pointer;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  float: right;
+}
+
+.edit_popup_form .edit_note_button .edit {
+  background-color: #d38e1f;
+  border: 1px solid #976515;
+}
+
+.edit_popup_form .edit_note_button .cancel {
+  background-color: #ab1616;
+  border: 1px solid #6c0d0d;
+  margin-right: 15px;
 }

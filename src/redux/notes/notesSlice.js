@@ -27,8 +27,17 @@ export const notesSlice = createSlice({
       const filtered = state.notes.filter((note) => note.id !== id);
       state.notes = filtered;
     },
+    editNote: (state, action) => {
+      state.notes.forEach(function(note) {
+        if(note.id === action.payload.id) {
+          note.title = action.payload.title
+          note.note = action.payload.description
+          note.hex = action.payload.hex
+        }
+      })
+    }
   },
 });
 
-export const { addNote, removeNote } = notesSlice.actions;
+export const { addNote, removeNote, editNote } = notesSlice.actions;
 export default notesSlice.reducer;
