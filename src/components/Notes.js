@@ -10,6 +10,7 @@ function Notes() {
 
   const notes = useSelector(state => state.notes.notes);
   const [isPopupActive, setPopup] = useState(false);
+  const [isPopupSuccess, setSuccess] = useState(false);
   const [isEditTitle, setEditTitle] = useState('');
   const [isEditNote, setEditNote] = useState('');
   const [isEditColor, setEditColor] = useState('');
@@ -57,10 +58,15 @@ function Notes() {
         hex: isEditColor
       }
     ));
+    setSuccess(true);
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
+    setTimeout(() => {
+      setPopup(false)
+    }, 1000);
 
-    setPopup(false)
-
-    //başarılı mesajı için popup hazırlanmalı
+    //color editleme alanı düzenlenmeli
   }
 
   return (
@@ -82,64 +88,64 @@ function Notes() {
                 <AiFillDelete />
               </button>
             </div>
-
-            <div className='edit_popup_form' style={{ display: isPopupActive ? 'block' : 'none' }}>
-              <textarea
-                id='editTitle'
-                value={isEditTitle}
-                onChange={(e) => setEditTitle(e.target.value)} />
-              <textarea
-                id='editNote'
-                value={isEditNote}
-                onChange={(e) => setEditNote(e.target.value)} />
-              <div className='color_select_area'>
-                <div className='select_colors'>
-                  <input id='edit_color_pink' className='color' type="radio" name="color" value="#F06291" />
-                  <label htmlFor='edit_color_pink' className='color_label'>
-                    <span>
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                    </span>
-                  </label>
-                  <input id='edit_color_purple' className='color' type="radio" name="color" value="#BA68C8" />
-                  <label htmlFor='edit_color_purple' className='color_label'>
-                    <span>
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                    </span>
-                  </label>
-                  <input id='edit_color_yellow' className='color' type="radio" name="color" value="#FED54E" />
-                  <label htmlFor='edit_color_yellow' className='color_label'>
-                    <span>
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                    </span>
-                  </label>
-                  <input id='edit_color_blue' className='color' type="radio" name="color" value="#50C2F7" />
-                  <label htmlFor='edit_color_blue' className='color_label'>
-                    <span>
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                    </span>
-                  </label>
-                  <input id='edit_color_green' className='color' type="radio" name="color" value="#AED580" />
-                  <label htmlFor='edit_color_green' className='color_label'>
-                    <span>
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                    </span>
-                  </label>
-                </div>
-              </div>
-              <div className='edit_note_button'>
-                <button className='edit' type='button' onClick={handleEditNote}>
-                  EDIT
-                </button>
-                <button className='cancel' type='button' onClick={handleClosePopup}>
-                  CANCEL
-                </button>
-              </div>
-            </div>
-
           </div>
         ))
       }
-
+      <div className='edit_popup_form' style={{ display: isPopupActive ? 'block' : 'none' }}>
+        <textarea
+          id='editTitle'
+          value={isEditTitle}
+          onChange={(e) => setEditTitle(e.target.value)} />
+        <textarea
+          id='editNote'
+          value={isEditNote}
+          onChange={(e) => setEditNote(e.target.value)} />
+        <div className='color_select_area'>
+          <div className='select_colors'>
+            <input id='edit_color_pink' className='color' type="radio" name='edit_color' value="#F06291" />
+            <label htmlFor='edit_color_pink' className='color_label'>
+              <span>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+              </span>
+            </label>
+            <input id='edit_color_purple' className='color' type="radio" name='edit_color' value="#BA68C8" />
+            <label htmlFor='edit_color_purple' className='color_label'>
+              <span>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+              </span>
+            </label>
+            <input id='edit_color_yellow' className='color' type="radio" name='edit_color' value="#FED54E" />
+            <label htmlFor='edit_color_yellow' className='color_label'>
+              <span>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+              </span>
+            </label>
+            <input id='edit_color_blue' className='color' type="radio" name='edit_color' value="#50C2F7" />
+            <label htmlFor='edit_color_blue' className='color_label'>
+              <span>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+              </span>
+            </label>
+            <input id='edit_color_green' className='color' type="radio" name='edit_color' value="#AED580" />
+            <label htmlFor='edit_color_green' className='color_label'>
+              <span>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+              </span>
+            </label>
+          </div>
+        </div>
+        <div className='edit_note_button'>
+          <button className='edit' type='button' onClick={handleEditNote}>
+            EDIT
+          </button>
+          <button className='cancel' type='button' onClick={handleClosePopup}>
+            CANCEL
+          </button>
+        </div>
+      </div>
+      <div className='edit_success_popup' style={{ display: isPopupSuccess ? 'block' : 'none' }}>
+        Your editing has been saved successfully.
+      </div>
     </div>
   )
 }

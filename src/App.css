@@ -90,18 +90,17 @@ html, body {
   bottom: 65px;
 }
 
-.textarea_container .select_colors,
-.edit_popup_form .select_colors {
+.select_colors {
   display: flex;
   justify-content: space-between;
   width: 180px;
   margin-left: 20px;
 }
 
-.textarea_container .select_colors .color, 
-.edit_popup_form .select_colors .color {
+.select_colors .color {
   display: none;
 }
+
 
 .color + label.color_label {
   color: #333;
@@ -173,7 +172,7 @@ html, body {
   opacity: 1;
 }
 
-.color_select_area .add_color button {
+.textarea_container .add_color button {
   cursor: pointer;
   background-color: #44C867;
   color: white;
@@ -299,4 +298,21 @@ html, body {
   background-color: #ab1616;
   border: 1px solid #6c0d0d;
   margin-right: 15px;
+}
+
+.edit_success_popup {
+  position: fixed;
+  width: 50%;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: top 2s;
+  background-color: #abe6ba;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-size: 25px;
+  font-weight: 600;
+  color: #707070;
 }
