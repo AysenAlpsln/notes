@@ -13,7 +13,6 @@ function Notes() {
   const [isPopupSuccess, setSuccess] = useState(false);
   const [isEditTitle, setEditTitle] = useState('');
   const [isEditNote, setEditNote] = useState('');
-  const [isEditColor, setEditColor] = useState('');
   const [isEditId, setEditId] = useState('')
 
   const dispatch = useDispatch();
@@ -26,13 +25,12 @@ function Notes() {
   }
 
   const handleShowPopup = (e) => {
-    setPopup(true)
+    setPopup(true);
     var editId = e.target.closest('.note').id;
     var selected = notes.filter((note) => note.id === editId);
     setEditId(editId)
     setEditTitle(selected[0].title)
     setEditNote(selected[0].note)
-    setEditColor(selected[0].hex)
 
     //seçilmiş renk kodu checked olarak gelir
     document.querySelectorAll('.edit_popup_form .color').forEach(function (item) {
@@ -55,7 +53,7 @@ function Notes() {
         id: isEditId,
         title: isEditTitle,
         description: isEditNote,
-        hex: isEditColor
+        hex: checkedColor
       }
     ));
     setSuccess(true);
@@ -64,9 +62,7 @@ function Notes() {
     }, 3000);
     setTimeout(() => {
       setPopup(false)
-    }, 1000);
-
-    //color editleme alanı düzenlenmeli
+    }, 500);
   }
 
   return (
@@ -146,7 +142,9 @@ function Notes() {
       <div className='edit_success_popup' style={{ display: isPopupSuccess ? 'block' : 'none' }}>
         Your editing has been saved successfully.
       </div>
+      <div id='overlay' className={isPopupActive ? 'active' : '' }></div>
     </div>
+    
   )
 }
 

@@ -28,6 +28,11 @@ function Form() {
       setTitle('');
       setDescription('');
       document.querySelector('input[type="radio"]:checked').checked = false;
+    } else {
+      document.getElementById("error_popup").classList.add("active");
+      setTimeout(() => {
+        document.getElementById("error_popup").classList.remove("active");
+      }, 1000);
     }
   }
 
@@ -82,7 +87,9 @@ function Form() {
           </button>
         </div>
       </div>
-
+      <div id='error_popup'>
+        Please choose your color.
+      </div>
     </div>
   )
 }

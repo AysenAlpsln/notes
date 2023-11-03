@@ -3,6 +3,22 @@ html, body {
   font-family: math;
 }
 
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  transition: 0.3s;
+}
+
+#overlay.active {
+  display: block;
+}
+
 .main_container {
   display: flex;
   flex-direction: column;
@@ -187,15 +203,13 @@ html, body {
 
 .list_container {
   width: 80%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
 }
 
 .list_container .note {
   position: relative;
-  min-width: 30%;
-  width: 30%;
   padding: 10px;
   box-shadow: 0px 8px 10px 0px #92919150;
   border-radius: 5px;
@@ -315,4 +329,26 @@ html, body {
   font-size: 25px;
   font-weight: 600;
   color: #707070;
+}
+
+#error_popup {
+  display: none;
+  position: fixed;
+  width: 50%;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: top 2s;
+  background-color: #f69d9d;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-size: 25px;
+  font-weight: 600;
+  color: #707070;
+}
+
+#error_popup.active {
+  display: block;
 }
