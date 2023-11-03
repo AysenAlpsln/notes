@@ -9,6 +9,7 @@ import { removeNote, editNote } from '../redux/notes/notesSlice';
 function Notes() {
 
   const notes = useSelector(state => state.notes.notes);
+  const searchNotes = useSelector(state => state.notes.searchNotes);
   const [isPopupActive, setPopup] = useState(false);
   const [isPopupSuccess, setSuccess] = useState(false);
   const [isEditTitle, setEditTitle] = useState('');
@@ -67,7 +68,27 @@ function Notes() {
 
   return (
     <div className='list_container'>
-      {
+      {searchNotes.length > 0 &&
+        searchNotes.map((note) => (
+          <div key={note.id} id={note.id} className='note' style={{ backgroundColor: note.hex }}>
+            <div className='note_title'>
+              {note.title}
+            </div>
+            <div className='note_description'>
+              <p>{note.note}</p>
+            </div>
+            <div className='note_buttons'>
+              <button className='edit_note' type='button' onClick={handleShowPopup}>
+                <BiSolidEdit />
+              </button>
+              <button className='delete_note' type='button' onClick={handleDeleteNote}>
+                <AiFillDelete />
+              </button>
+            </div>
+          </div>
+        ))
+      }
+      {searchNotes.length === 0 &&
         notes.map((note) => (
           <div key={note.id} id={note.id} className='note' style={{ backgroundColor: note.hex }}>
             <div className='note_title'>

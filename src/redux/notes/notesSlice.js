@@ -17,6 +17,7 @@ export const notesSlice = createSlice({
         hex: '#BA68C8',
       },
     ],
+    searchNotes: [],
   },
   reducers: {
     addNote: (state, action) => {
@@ -35,9 +36,14 @@ export const notesSlice = createSlice({
           note.hex = action.payload.hex
         }
       })
+    },
+    searchNote: (state, action) => {
+      const term = action.payload.toLowerCase();        
+      const search = state.notes.filter((note) => note.title.toLowerCase().indexOf(term) > -1);
+      state.searchNotes = search;
     }
   },
 });
 
-export const { addNote, removeNote, editNote } = notesSlice.actions;
+export const { addNote, removeNote, editNote, searchNote } = notesSlice.actions;
 export default notesSlice.reducer;
